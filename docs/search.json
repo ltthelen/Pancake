@@ -2,22 +2,41 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "YOUR PROJECT TITLE",
+    "title": "Pancake again",
     "section": "",
-    "text": "1 Introduction"
+    "text": "1 Introduction",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
   },
   {
-    "objectID": "data.html#description",
-    "href": "data.html#description",
+    "objectID": "data.html",
+    "href": "data.html",
     "title": "2  Data",
-    "section": "2.1 Description",
-    "text": "2.1 Description"
+    "section": "",
+    "text": "2.1 Description",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data</span>"
+    ]
   },
   {
     "objectID": "data.html#missing-value-analysis",
     "href": "data.html#missing-value-analysis",
     "title": "2  Data",
     "section": "2.2 Missing value analysis",
-    "text": "2.2 Missing value analysis"
+    "text": "2.2 Missing value analysis",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "d3graph.html",
+    "href": "d3graph.html",
+    "title": "4  Interactive graph",
+    "section": "",
+    "text": "Code\n#install.packages(\"alr4\")\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nCode\n#install.packages(\"broom\")\nlibrary(broom)  \nlibrary(tidyverse)\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ lubridate 1.9.4     ✔ tibble    3.2.1\n✔ purrr     1.0.2     ✔ tidyr     1.3.1\n✔ readr     2.1.5     \n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\nCode\nlibrary(alr4)\n\n\nLoading required package: car\nLoading required package: carData\n\nAttaching package: 'car'\n\nThe following object is masked from 'package:purrr':\n\n    some\n\nThe following object is masked from 'package:dplyr':\n\n    recode\n\nLoading required package: effects\nlattice theme set by effectsTheme()\nSee ?effectsTheme for details.\n\n\nCode\ndata(Highway)\nstr(Highway)\n\n\n'data.frame':   39 obs. of  12 variables:\n $ adt  : int  69 73 49 61 28 30 46 25 43 23 ...\n $ trks : int  8 8 10 13 12 6 8 9 12 7 ...\n $ lane : int  8 4 4 6 4 4 4 4 4 4 ...\n $ acpt : num  4.6 4.4 4.7 3.8 2.2 24.8 11 18.5 7.5 8.2 ...\n $ sigs : num  0 0 0 0 0 1.84 0.7 0.38 1.39 1.21 ...\n $ itg  : num  1.2 1.43 1.54 0.94 0.65 0.34 0.47 0.38 0.95 0.12 ...\n $ slim : int  55 60 60 65 70 55 55 55 50 50 ...\n $ len  : num  4.99 16.11 9.75 10.65 20.01 ...\n $ lwid : int  12 12 12 12 12 12 12 12 12 12 ...\n $ shld : int  10 10 10 10 10 10 8 10 4 5 ...\n $ htype: Factor w/ 4 levels \"mc\",\"fai\",\"pa\",..: 2 2 2 2 2 3 3 3 3 3 ...\n $ rate : num  4.58 2.86 3.02 2.29 1.61 6.87 3.85 6.12 3.29 5.88 ...\n\n\nCode\nmodel_1 &lt;- lm(rate ~ trks + acpt, data = Highway)\nsummary(model_1)\n\n\n\nCall:\nlm(formula = rate ~ trks + acpt, data = Highway)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-2.0610 -0.9655  0.1222  0.6568  3.1717 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  4.42932    1.00856   4.392 9.47e-05 ***\ntrks        -0.23418    0.09134  -2.564   0.0147 *  \nacpt         0.13896    0.02308   6.021 6.52e-07 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.237 on 36 degrees of freedom\nMultiple R-squared:  0.6326,    Adjusted R-squared:  0.6122 \nF-statistic: 30.99 on 2 and 36 DF,  p-value: 1.487e-08\n\n\nCode\nmodel_2 &lt;- lm(rate ~ slim, data = Highway)\nsummary(model_2)\n\n\n\nCall:\nlm(formula = rate ~ slim, data = Highway)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-2.3295 -0.9653 -0.2072  0.7297  4.2767 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 16.65103    2.26068   7.366 9.29e-09 ***\nslim        -0.23123    0.04088  -5.657 1.83e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.474 on 37 degrees of freedom\nMultiple R-squared:  0.4637,    Adjusted R-squared:  0.4492 \nF-statistic:    32 on 1 and 37 DF,  p-value: 1.833e-06\n\n\nCode\nfull_model &lt;- lm(rate ~ trks + acpt + slim, data = Highway)\nsummary(full_model)\n\n\n\nCall:\nlm(formula = rate ~ trks + acpt + slim, data = Highway)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-2.3652 -0.9490  0.1412  0.7481  2.4973 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept) 10.20690    2.79157   3.656 0.000833 ***\ntrks        -0.21994    0.08705  -2.527 0.016195 *  \nacpt         0.09815    0.02871   3.419 0.001613 ** \nslim        -0.09844    0.04467  -2.204 0.034222 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.175 on 35 degrees of freedom\nMultiple R-squared:  0.6774,    Adjusted R-squared:  0.6497 \nF-statistic:  24.5 on 3 and 35 DF,  p-value: 1.014e-08\n\n\nCode\nr2_model_1 &lt;- summary(model_1)$r.squared\nr2_model_2 &lt;- summary(model_2)$r.squared\nr2_full_model &lt;- summary(full_model)$r.squared\n\nprint(r2_model_1)\n\n\n[1] 0.6326149\n\n\nCode\nprint(r2_model_2)\n\n\n[1] 0.4637387\n\n\nCode\nprint(r2_full_model)\n\n\n[1] 0.6773765\n\n\nWe can find that \\(R^2\\) from the model 1 is 0.6326149, \\(R^2\\) from the model 2 is 0.4637387 and \\(R^2\\) from the full model is 0.6773765. Certainly \\(R^2\\) from the model 1 much more closer to full model. So we can find that trks and acpt are more important in model. Slim does not significantly improve the model.\n\nHow much additional variation is explained by the addition of slim to model 1?\n\n\n\nCode\n0.6773765-0.6326149\n\n\n[1] 0.0447616\n\n\nAlmost 0.0447616 additional variation is explained by the addition of slim to model 1.\n\nCreate an added variable plot for slim and add the best fitting line. (Hint: unlike the example in class, there are two other regressors in the problem besides slim.)\n\n\n\nCode\nrate_y &lt;- residuals(lm(rate ~ trks + acpt, data = Highway))\nslim_x &lt;- residuals(lm(slim ~ trks + acpt, data = Highway))\n\navp_data &lt;- data.frame(rate_y, slim_x)\n\nggplot(avp_data, aes(x = slim_x, y = rate_y)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", color = \"lightblue\") +\n  theme_bw()\n\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Interactive graph</span>"
+    ]
   }
 ]

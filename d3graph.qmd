@@ -1,4 +1,61 @@
 # Interactive graph
+```{r}
+#install.packages("alr4")
+library(ggplot2)
+library(dplyr)
+#install.packages("broom")
+library(broom)  
+library(tidyverse)
+library(alr4)
+
+data(Highway)
+str(Highway)
+
+model_1 <- lm(rate ~ trks + acpt, data = Highway)
+summary(model_1)
+
+model_2 <- lm(rate ~ slim, data = Highway)
+summary(model_2)
+
+full_model <- lm(rate ~ trks + acpt + slim, data = Highway)
+summary(full_model)
+
+r2_model_1 <- summary(model_1)$r.squared
+r2_model_2 <- summary(model_2)$r.squared
+r2_full_model <- summary(full_model)$r.squared
+
+print(r2_model_1)
+print(r2_model_2)
+print(r2_full_model)
+
+```
+We can find that $R^2$ from the model 1 is 0.6326149, $R^2$ from the model 2 is 0.4637387 and $R^2$ from the full model is 0.6773765.
+Certainly $R^2$ from the model 1 much more closer to full model. So we can find that trks and acpt are more important in model.
+Slim does not significantly improve the model.
+
+
+b. How much additional variation is explained by the addition of `slim` to model 1?
+```{r}
+0.6773765-0.6326149
+```
+ Almost 0.0447616 additional variation is explained by the addition of slim to model 1.
+ 
+
+c. Create an added variable plot for `slim` and add the best fitting line. (Hint: unlike the example in class, there are *two* other regressors in the problem besides `slim`.)
+```{r}
+rate_y <- residuals(lm(rate ~ trks + acpt, data = Highway))
+slim_x <- residuals(lm(slim ~ trks + acpt, data = Highway))
+
+avp_data <- data.frame(rate_y, slim_x)
+
+ggplot(avp_data, aes(x = slim_x, y = rate_y)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", color = "lightblue") +
+  theme_bw()
+
+
+
+```
 
 <style>
   * {
