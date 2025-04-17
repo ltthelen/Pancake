@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Pancake again",
     "section": "",
-    "text": "1 Introduction",
+    "text": "1 Introduction\n\n\nCode\nplot(1:3, 4:6)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
